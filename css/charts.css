@@ -1,0 +1,121 @@
+/* Chart chrome: recessive hairlines, text tokens, tooltip, legends. */
+
+.chart {
+  position: relative;
+  width: 100%;
+}
+.chart svg { display: block; width: 100%; height: auto; }
+
+.chart .grid-line { stroke: var(--hairline); stroke-width: 1; shape-rendering: crispEdges; }
+.chart .axis-line { stroke: var(--baseline); stroke-width: 1; shape-rendering: crispEdges; }
+.chart .tick-label {
+  fill: var(--ink-3);
+  font-size: 11px;
+  font-family: var(--font);
+  font-variant-numeric: tabular-nums;
+}
+.chart .axis-title { fill: var(--ink-3); font-size: 11px; }
+.chart .direct-label { fill: var(--ink-2); font-size: 11px; font-weight: 600; }
+.chart .annot { fill: var(--ink-2); font-size: 11px; }
+.chart .annot-line { stroke: var(--baseline); stroke-width: 1; stroke-dasharray: none; }
+
+.chart .regime-band { opacity: 0.5; }
+.chart .regime-label {
+  fill: var(--ink-3);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chart .crosshair { stroke: var(--baseline); stroke-width: 1; }
+
+.chart .hover-lift { filter: brightness(0.92); }
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  padding: 0.25rem 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  list-style: none;
+  margin: 0;
+}
+.chart-legend .key { display: inline-flex; align-items: center; gap: 0.4rem; }
+.chart-legend .swatch { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.chart-legend .swatch.line { height: 2px; width: 14px; border-radius: 1px; }
+
+.viz-tooltip {
+  position: fixed;
+  z-index: 90;
+  pointer-events: none;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(17, 17, 20, 0.14);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.8rem;
+  max-width: 300px;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+.viz-tooltip.show { opacity: 1; }
+.viz-tooltip .tt-title {
+  font-weight: 650;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.viz-tooltip table { border-collapse: collapse; }
+.viz-tooltip td { padding: 0.08rem 0; color: var(--ink-2); }
+.viz-tooltip td.tt-val {
+  font-weight: 650;
+  color: var(--ink);
+  text-align: right;
+  padding-left: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+.viz-tooltip .tt-key {
+  display: inline-block;
+  width: 12px;
+  height: 3px;
+  border-radius: 2px;
+  margin-right: 0.45rem;
+  vertical-align: middle;
+}
+
+/* choropleth */
+.chart .country { stroke: #ffffff; stroke-width: 0.6; }
+.chart .country.no-data { fill: #ececec; }
+.chart .country:hover, .chart .country.active { stroke: var(--ink); stroke-width: 1; }
+.map-layout { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(260px, 1fr); gap: 1.1rem; }
+@media (max-width: 900px) { .map-layout { grid-template-columns: 1fr; } }
+
+.rank-list { margin: 0; padding: 0; list-style: none; font-size: 0.85rem; max-height: 520px; overflow-y: auto; }
+.rank-row {
+  display: grid;
+  grid-template-columns: 1.4rem minmax(90px, auto) 1fr auto;
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.28rem 0.35rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 0;
+  background: none;
+  font: inherit;
+  width: 100%;
+  text-align: left;
+  color: var(--ink);
+}
+.rank-row:hover, .rank-row.active { background: var(--wash); }
+.rank-row .rank-n { color: var(--ink-3); font-variant-numeric: tabular-nums; font-size: 0.78rem; }
+.rank-row .rank-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank-row .rank-name .off-map { color: var(--ink-3); font-size: 0.72rem; }
+.rank-row .rank-bar { height: 6px; border-radius: 3px; background: var(--wash); position: relative; min-width: 40px; }
+.rank-row .rank-bar span { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
+.rank-row .rank-val { font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: 0.8rem; }
+
+.map-legend { display: flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: var(--ink-3); padding-top: 0.4rem; flex-wrap: wrap; }
+.map-legend .ramp { height: 10px; width: 180px; border-radius: 5px; }
+.map-legend .no-data-key { display: inline-flex; align-items: center; gap: 0.35rem; }
+.map-legend .no-data-swatch { width: 12px; height: 12px; border-radius: 3px; background: #ececec; border: 1px solid var(--hairline); }

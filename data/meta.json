@@ -1,0 +1,50 @@
+{
+ "paper": {
+  "title": "From harm to compliance: five decades of apparel and home textile recalls in the United States",
+  "short_title": "From harm to compliance",
+  "dataset": "US CPSC apparel & home textile recalls, 1974–2026",
+  "n_recalls": 758,
+  "window": [
+   1974,
+   2026
+  ]
+ },
+ "data_retrieved": "2026-08-13",
+ "built": "2026-08-14",
+ "headline": {
+  "n_recalls": 758,
+  "online_flam_or": 5.03,
+  "online_flam_or_ci": [
+   2.96,
+   8.57
+  ],
+  "breslow_day_p": 0.84,
+  "kitagawa_composition_share": 0.226,
+  "kitagawa_within_rate_share": 0.774,
+  "regime_change": "2011/2012",
+  "changepoint_modes": [
+   2005,
+   2011
+  ],
+  "flam_share_2020_25": 0.6045,
+  "detection_crossing_year": 2012,
+  "n_countries_modelled": 58,
+  "china_share_of_recalls": 0.5277
+ },
+ "hazard_counts": {
+  "flammability_burn": 257,
+  "choking_small_parts": 227,
+  "chemical": 51,
+  "laceration_puncture": 27,
+  "entrapment_entanglement": 5,
+  "drawstring_strangulation": 108,
+  "fall_slip": 51,
+  "other": 26,
+  "protective_failure": 6
+ },
+ "sources": {
+  "recalls": "cpsc.gov recall database (hardened dataset v2)",
+  "imports": "OTEXA total apparel imports (SME), 1989–2025",
+  "basemap": "Natural Earth 1:110m admin-0 countries"
+ }
+}

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Harm to Compliance — US Textile Recalls 1974–2026</title>
+<meta name="description" content="Interactive companion to the paper 'From harm to compliance: five decades of apparel and home textile recalls in the United States'. Explore 758 CPSC recalls, sourcing risk, regulatory regimes, and the 16 CFR 1610/1615/1616 compliance boundary.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23B8155A'/%3E%3Cpath d='M9 22V10h6.2c2.6 0 4.3 1.4 4.3 3.6 0 1.5-.8 2.6-2.1 3.1L21 22h-3.4l-3-4.7H12V22H9zm3-7.2h3c1.1 0 1.8-.6 1.8-1.6s-.7-1.6-1.8-1.6h-3v3.2z' fill='%23fff'/%3E%3C/svg%3E">
+<!--
+  Static site: serve from any web server or static host (Cloudflare Pages,
+  GitHub Pages, ...). Everything it needs — the JavaScript, the two vendored
+  libraries in js/vendor/, and the data/*.json files — is served from this
+  folder, so it works offline and behind a proxy.
+
+  It must be served over http, not opened from disk: ES modules and fetch()
+  are both blocked on file:// URLs. For local preview run
+  `python -m http.server` in this folder and open http://localhost:8000/.
+-->
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/charts.css">
+</head>
+<body>
+<a class="skip-link" href="#view">Skip to content</a>
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="#/overview" aria-label="From Harm to Compliance, home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">
+        <strong>From Harm to Compliance</strong>
+        <span class="brand-sub">US textile recalls · 1974–2026</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Sections">
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-list">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        Menu
+      </button>
+      <ul class="nav-list" id="nav-list">
+        <li><a href="#/overview" data-route="overview">Overview</a></li>
+        <li><a href="#/explorer" data-route="explorer">Recall Explorer</a></li>
+        <li><a href="#/map" data-route="map">Sourcing Map</a></li>
+        <li><a href="#/compliance" data-route="compliance">Compliance Checker</a></li>
+        <li><a href="#/timeline" data-route="timeline">Regime Timeline</a></li>
+        <li><a href="#/remedy" data-route="remedy">Remedy Insights</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="view" class="shell view" tabindex="-1" aria-live="polite" aria-busy="false">
+  <noscript>
+    <div class="card pad">
+      This companion is an interactive application and needs JavaScript.
+      The underlying data lives in the <code>data/</code> folder as plain JSON.
+    </div>
+  </noscript>
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <p class="footer-cite">
+      Companion to <cite>From harm to compliance: five decades of apparel and home
+      textile recalls in the United States</cite> — 758 US CPSC apparel and home
+      textile recalls, 1974–2026.
+    </p>
+    <p class="footer-note">
+      Data: <a href="https://www.cpsc.gov/Recalls" rel="external">cpsc.gov recall database</a>
+      (hardened dataset v2) and OTEXA apparel import volumes. Basemap: Natural Earth.
+      All figures are descriptive research outputs, <strong>not legal or compliance advice</strong>.
+    </p>
+  </div>
+</footer>
+
+<script type="module" src="js/app.js"></script>
+
+<!-- Boot watchdog: if the module graph never executes (opened from disk, a file
+     failed to load, an old browser without ES modules), say so instead of
+     leaving the visitor looking at an empty page. -->
+<script>
+(function () {
+  var view = document.getElementById("view");
+  var shown = false;
+
+  function booted() { return view.dataset.booted === "1"; }
+
+  function fail(reason) {
+    if (shown || booted()) return;
+    shown = true;
+    var fileUrl = window.location.protocol === "file:";
+    view.innerHTML =
+      '<div class="card pad error-box">' +
+      "<p><strong>The application could not start.</strong></p>" +
+      (fileUrl
+        ? "<p>This page was opened directly from disk. Browsers block JavaScript" +
+          " modules and data files on <code>file://</code> URLs for security" +
+          " reasons.</p><p>Serve the folder instead — open a terminal here and run" +
+          " <code>python -m http.server</code>, then visit" +
+          " <code>http://localhost:8000/</code>.</p>"
+        : "<p>A required file did not load" +
+          (reason ? " (" + reason + ")" : "") +
+          ". Check that the <code>js/</code>, <code>css/</code> and" +
+          " <code>data/</code> folders were all copied to the server, then" +
+          " reload the page.</p>") +
+      "</div>";
+    view.setAttribute("aria-busy", "false");
+  }
+
+  window.addEventListener("error", function (e) {
+    if (booted()) return;
+    var t = e.target;
+    if (t && (t.tagName === "SCRIPT" || t.tagName === "LINK")) {
+      fail((t.src || t.href || "").split("/").slice(-1)[0]);
+    } else if (e.message) {
+      fail(e.message);
+    }
+  }, true);
+
+  window.setTimeout(fail, 8000);
+})();
+</script>
+</body>
+</html>
