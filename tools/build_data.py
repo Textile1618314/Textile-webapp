@@ -27,6 +27,11 @@ Q = 100000  # topojson quantization grid
 
 # ---------------------------------------------------------------- helpers
 
+def afolder(proj, prefix):
+    """Analysis folder by numeric prefix; folder names carry descriptive tags."""
+    return sorted((proj / "02_analysis").glob(prefix + "_*"))[0]
+
+
 def fnum(v):
     """Parse a possibly-empty numeric string to float or None."""
     if v is None or v == "":
@@ -81,7 +86,7 @@ RECALL_FIELDS = [
 
 
 def build_recalls(proj, out):
-    rows = read_csv(proj / "02_analysis/09_dataset_hardening/results/apparel_recalls_v2.csv")
+    rows = read_csv(afolder(proj, "09") / "results/apparel_recalls_v2.csv")
     records = []
     for r in rows:
         records.append({
@@ -224,8 +229,8 @@ def build_world(proj, out, ne_geojson):
 # ---------------------------------------------------------------- country rates
 
 def build_country_rates(proj, out, map_names):
-    rows = read_csv(proj / "02_analysis/14_bayes_hierarchical_rate/results/country_rates.csv")
-    summ = read_json(proj / "02_analysis/14_bayes_hierarchical_rate/results/bayes_rate_summary.json")
+    rows = read_csv(afolder(proj, "14") / "results/country_rates.csv")
+    summ = read_json(afolder(proj, "14") / "results/bayes_rate_summary.json")
     unmatched = []
     countries = []
     for r in rows:
@@ -274,7 +279,7 @@ def build_country_rates(proj, out, map_names):
 # ---------------------------------------------------------------- regimes
 
 def build_regimes(proj, out):
-    res = proj / "02_analysis/15_bayes_changepoint/results"
+    res = afolder(proj, "15") / "results"
     post = read_csv(res / "changepoint_posterior.csv")
     comp = read_csv(res / "regime_composition.csv")
     matrix = read_csv(res / "hazard_year_matrix.csv")
@@ -344,7 +349,7 @@ def build_regimes(proj, out):
 # ---------------------------------------------------------------- detection
 
 def build_detection(proj, out):
-    res = proj / "02_analysis/11_violation_vs_incident/results"
+    res = afolder(proj, "11") / "results"
     post = read_csv(res / "posterior_by_year.csv")
     annual = read_csv(res / "annual_classification.csv")
     summ = read_json(res / "posterior_summary.json")
@@ -388,7 +393,7 @@ def build_detection(proj, out):
 # ---------------------------------------------------------------- channel
 
 def build_channel(proj, out):
-    res = proj / "02_analysis/10_hazard_channel_regime/results"
+    res = afolder(proj, "10") / "results"
     summ = read_json(res / "summary.json")
     decomp = read_json(res / "decomposition.json")
     ors = read_csv(res / "odds_ratios_by_period.csv")
@@ -482,7 +487,7 @@ def mean_sd(values):
 
 
 def build_remedy_model(proj, out, recall_rows):
-    res = proj / "02_analysis/16_ml_remedy_and_scale/results"
+    res = afolder(proj, "16") / "results"
     coefs = read_csv(res / "coefficients_refund.csv")
     imp = read_csv(res / "permutation_importance_refund.csv")
     summ = read_json(res / "summary.json")["task_refund"]
