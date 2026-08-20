@@ -1,7 +1,7 @@
 /**
  * Remedy & Risk Insights: the paper's refund-prediction model as a
  * what-if calculator, with permutation importance and coefficients.
- * Descriptive reconstruction — clearly labelled as not advice.
+ * Descriptive reconstruction, clearly labelled as not advice.
  */
 import { getData } from "../api.js";
 import { barChart } from "../charts/bars.js";
@@ -63,7 +63,7 @@ export default {
               <input type="range" id="rm-price" min="0.3" max="3.3" step="0.05" value="1.4"
                      aria-describedby="rm-price-hint">
               <span class="hint" id="rm-price-hint">$2 to $2,000, log scale. Price is the
-              single strongest predictor — cheaper products get refunds.</span>
+              single strongest predictor: cheaper products get refunds.</span>
             </div>
             <div class="field">
               <label for="rm-units">Units recalled: <output id="rm-units-out">4,000</output></label>
@@ -86,7 +86,7 @@ export default {
         <section class="card pad" aria-live="polite" aria-labelledby="rm-score-title">
           <h2 id="rm-score-title" style="margin:0 0 0.6rem;font-size:1.02rem">Model view of this profile</h2>
           <div class="prob-readout">
-            <span class="big" id="rm-prob">—</span>
+            <span class="big" id="rm-prob">-</span>
             <span style="color:var(--ink-2)">modelled refund probability<br>
               <span style="font-size:0.8rem;color:var(--ink-3)">sample base rate ${fmtPct(model.base_rate)}</span></span>
           </div>

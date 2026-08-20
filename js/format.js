@@ -88,8 +88,8 @@ export const ARCHETYPES = {
 };
 
 export const BOUNDARY_CLASSES = {
-  exemption_eligible: "Sleepwear — tight-fitting exemption possible",
-  exemption_ineligible: "Sleepwear — exemption not available",
+  exemption_eligible: "Sleepwear: tight-fitting exemption possible",
+  exemption_ineligible: "Sleepwear: exemption not available",
   not_sleepwear: "Not sleepwear",
 };
 
@@ -103,28 +103,28 @@ const nfInt = new Intl.NumberFormat("en-US");
 const nfCompact = new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 });
 
 export function fmtInt(x) {
-  return x == null ? "—" : nfInt.format(x);
+  return x == null ? "-" : nfInt.format(x);
 }
 
 export function fmtCompact(x) {
-  return x == null ? "—" : nfCompact.format(x);
+  return x == null ? "-" : nfCompact.format(x);
 }
 
 export function fmtUSD(x) {
-  if (x == null) return "—";
+  if (x == null) return "-";
   return "$" + (x >= 100 ? nfInt.format(Math.round(x)) : x.toFixed(2));
 }
 
 export function fmtPct(x, digits = 0) {
-  return x == null ? "—" : (100 * x).toFixed(digits) + "%";
+  return x == null ? "-" : (100 * x).toFixed(digits) + "%";
 }
 
 export function fmtNum(x, digits = 2) {
-  return x == null ? "—" : Number(x).toFixed(digits);
+  return x == null ? "-" : Number(x).toFixed(digits);
 }
 
 export function fmtDate(iso) {
-  if (!iso) return "—";
+  if (!iso) return "-";
   const [y, m, d] = iso.split("-").map(Number);
   const dt = new Date(Date.UTC(y, m - 1, d));
   return dt.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });

@@ -26,7 +26,7 @@ FAILURES = []
 
 def check(name, ok, detail=""):
     mark = "ok " if ok else "FAIL"
-    print(f"[{mark}] {name}" + (f" — {detail}" if detail else ""))
+    print(f"[{mark}] {name}" + (f" - {detail}" if detail else ""))
     if not ok:
         FAILURES.append(name)
 

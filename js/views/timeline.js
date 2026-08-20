@@ -76,7 +76,7 @@ export default {
             <p class="note">Posterior share of recalls citing a detected standard violation
             vs a reported injury or incident (94% HDI bands, observed shares as dots).
             The violation share overtakes the injury share in
-            <strong>${detection.crossing_year}</strong> — P(violation &gt; injury) reaches
+            <strong>${detection.crossing_year}</strong>: P(violation &gt; injury) reaches
             ${fmtPct(detection.p_violation_exceeds_injury[detection.crossing_year])} that
             year and ~100% after 2015. Detection now leads harm: recalls increasingly
             happen because testing found a violation, not because someone was hurt.</p>

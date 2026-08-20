@@ -1,4 +1,4 @@
-/*! d3 v7.9.0 — vendored subset. Copyright 2010-2023 Mike Bostock. ISC License.
+/*! d3 v7.9.0 - vendored subset. Copyright 2010-2023 Mike Bostock. ISC License.
  *  https://github.com/d3/d3  ·  https://github.com/d3/d3/blob/main/LICENSE
  *  Bundled from d3-array, d3-format, d3-geo, d3-interpolate, d3-scale,
  *  d3-selection and d3-shape: only the symbols this application uses.

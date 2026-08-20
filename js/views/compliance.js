@@ -2,7 +2,7 @@
  * Compliance Boundary Checker: walks the 16 CFR 1610 / 1615 / 1616 logic
  * for a described garment and shows the dataset's recall record for the
  * matching archetype. Descriptive summary of the rules as analysed in the
- * paper — not legal advice.
+ * paper, not legal advice.
  */
 import { getData } from "../api.js";
 import { hazardColor, hazardLabel, fmtInt, fmtPct, fmtDate, esc } from "../format.js";
@@ -89,23 +89,23 @@ function decide({ category, wearer, fit, fabric }) {
         garment is treated as sleepwear and ${cite(std)} applies in full.`);
       citations.add("1615.1");
     } else if (fit === "tight") {
-      headline = `${stdLabel.startsWith("children's sleepwear sizes 7") ? "16 CFR 1616" : "16 CFR 1615"} applies — but the tight-fitting exemption can remove the flame-test requirement`;
+      headline = `${stdLabel.startsWith("children's sleepwear sizes 7") ? "16 CFR 1616" : "16 CFR 1615"} applies, but the tight-fitting exemption can remove the flame-test requirement`;
       badges = [["blue", "16 CFR 1610"], ["green", "Tight-fitting exemption possible"]];
       items.push(`Children's sleepwear in this size band falls under ${cite(std)},
-        the standard for ${stdLabel}. A garment qualifies as <em>tight-fitting</em> —
-        and is excluded from the flame-resistance test requirement — only if it does not
+        the standard for ${stdLabel}. A garment qualifies as <em>tight-fitting</em>
+        (and is excluded from the flame-resistance test requirement) only if it does not
         exceed the maximum chest, waist, seat, upper-arm, thigh, wrist and ankle
         dimensions for its size in ${cite("1615.1", "16 CFR 1615.1(o)")} (sizes 0–6X)
         or the parallel definition in ${cite("1616")} (sizes 7–14), and it must fit
         snugly at every listed point.`);
       items.push(`Tight-fitting sleepwear still needs ${cite("1610")} compliance, and CPSC
         guidance requires the permanent "wear snug-fitting, not flame resistant" caution
-        label and hangtag on qualifying garments. Verify the measured garment — not the
-        spec sheet — against the dimension table for every size in the range: one size
+        label and hangtag on qualifying garments. Verify the measured garment, not the
+        spec sheet, against the dimension table for every size in the range: one size
         over the maximum forfeits the exemption for that SKU.`);
       citations.add("1615.1");
     } else {
-      headline = `${wearer === "child_7_14" ? "16 CFR 1616" : "16 CFR 1615"} applies in full — the garment must be flame resistant`;
+      headline = `${wearer === "child_7_14" ? "16 CFR 1616" : "16 CFR 1615"} applies in full: the garment must be flame resistant`;
       badges = [["pink", wearer === "child_7_14" ? "16 CFR 1616" : "16 CFR 1615"], ["blue", "16 CFR 1610"]];
       items.push(`Loose-fitting children's sleepwear in this size band must comply with
         ${cite(std)} (${stdLabel}): fabric, seams and trim must self-extinguish under the
@@ -116,7 +116,7 @@ function decide({ category, wearer, fit, fabric }) {
         warnings.push(`You selected an untreated / not flame-resistant fabric. A loose-fitting
           children's ${cat.lounge ? "loungewear-as-sleepwear" : "sleepwear"} garment in
           untreated cotton or cotton-blend fleece is the single most common flammability
-          recall archetype in the dataset — these garments cannot pass the sleepwear
+          recall archetype in the dataset; these garments cannot pass the sleepwear
           standard as built.`);
       }
       if (fit === "unsure") {
@@ -131,7 +131,7 @@ function decide({ category, wearer, fit, fabric }) {
     if (cat.lounge) {
       warnings.push(`"Loungewear" is not a recognised escape category. CPSC treats garments
         that are marketed or likely to be used for sleeping as children's sleepwear no matter
-        the label — the paper calls recalls in this zone <em>category arbitrage</em>, and
+        the label. The paper calls recalls in this zone <em>category arbitrage</em>, and
         about one in five sleepwear-standard recalls since 2010 is a garment sold as
         loungewear. Marketing imagery, product copy and retail placement all count.`);
     }
@@ -150,7 +150,7 @@ function decide({ category, wearer, fit, fabric }) {
       : category === "footwear" ? [["amber", "16 CFR 1610 exemption"]]
       : [["blue", "16 CFR 1610"]];
     if (isChild && cat.value === "daywear") {
-      items.push(`Daywear is not sleepwear — but if the garment is pictured or described for
+      items.push(`Daywear is not sleepwear, but if the garment is pictured or described for
         sleeping (children lounging in bed, "PJs", "cozy for bedtime"), CPSC can treat it as
         sleepwear. Keep marketing aligned with the daywear claim.`);
     }
@@ -161,7 +161,7 @@ function decide({ category, wearer, fit, fabric }) {
     items.push(`Children's upper outerwear in sizes 2T–12 with neck or hood drawstrings,
       and sizes 2T–16 with certain waist drawstrings, is deemed a substantial product
       hazard under ${cite("1120", "16 CFR 1120.3(b)")} (following ASTM F1816). Drawstring
-      strangulation drove the 2005–2011 recall regime in this dataset — design them out.`);
+      strangulation drove the 2005–2011 recall regime in this dataset, so design them out.`);
     citations.add("1120");
   }
 
@@ -210,7 +210,7 @@ export default {
         <h1>Compliance Boundary Checker</h1>
         <p class="lede">Describe a garment and walk the flammability-standard boundary the
         paper maps: which standard applies, whether the tight-fitting or infant exclusions
-        can apply, what testing and paperwork are expected — and what the recall record
+        can apply, what testing and paperwork are expected, and what the recall record
         says about products like it.</p>
       </div>
 
@@ -293,7 +293,7 @@ export default {
         <p>${d.badges.map(([tone, text]) => `<span class="badge ${tone}" style="margin-right:0.4rem">${esc(text)}</span>`).join("")}</p>
         ${d.warnings.map((w) => `<div class="callout" style="margin:0.7rem 0">${w}</div>`).join("")}
         <ul class="verdict-list">${d.items.map((i) => `<li>${i}</li>`).join("")}</ul>
-        <p class="note">Controlling text: ${d.citations.map((c) => cite(c)).join(" · ")} — links open the current eCFR.</p>`;
+        <p class="note">Controlling text: ${d.citations.map((c) => cite(c)).join(" · ")}. Links open the current eCFR.</p>`;
 
       // evidence panel
       const isChild = input.wearer === "adult" ? false : true;
@@ -332,7 +332,7 @@ export default {
           ${ev.recent.map((r) => `
             <li style="margin-bottom:0.35rem">
               <a href="${esc(r.url)}" rel="external noopener" target="_blank">${esc(r.title)}</a>
-              <span style="color:var(--ink-3)"> — ${esc(fmtDate(r.date))}</span>
+              <span style="color:var(--ink-3)"> · ${esc(fmtDate(r.date))}</span>
             </li>`).join("")}
         </ul>
         <p class="note"><a href="#/explorer?archetype=${encodeURIComponent(input.category)}&childrens=${isChild ? "yes" : "no"}">

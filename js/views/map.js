@@ -8,7 +8,7 @@ import { dataTableTwin } from "../charts/base.js";
 import { fmtInt, fmtNum, fmtPct, esc } from "../format.js";
 
 function rateFmt(v) {
-  if (v == null) return "—";
+  if (v == null) return "-";
   return v >= 10 ? v.toFixed(0) : v >= 1 ? v.toFixed(1) : v.toFixed(2);
 }
 

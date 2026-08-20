@@ -56,7 +56,7 @@ async function mount() {
 
   setActiveNav(route);
   closeNav();
-  document.title = `${view.title} — From Harm to Compliance`;
+  document.title = "US Textile Recalls";
   viewEl.setAttribute("aria-busy", "true");
   viewEl.innerHTML = `<div class="loading"><div class="spinner" aria-hidden="true"></div>Loading ${view.title}…</div>`;
 
@@ -73,7 +73,7 @@ async function mount() {
         <p>${err instanceof Error ? escapeText(err.message) : "Unexpected error"}</p>
         <p><button class="btn" id="retry-btn">Try again</button></p>
         <p class="note">If you opened index.html straight from disk, the browser
-        cannot load the data files over file:// — serve the folder with
+        cannot load the data files over file://. Serve the folder with
         <code>python -m http.server</code> instead.</p>
       </div>`;
     document.getElementById("retry-btn").addEventListener("click", mount);

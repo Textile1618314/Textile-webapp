@@ -90,7 +90,7 @@ export default {
               <ul class="verdict-list">
                 <li><strong>The e-commerce flammability channel.</strong> An online-only recall
                   is ${h.online_flam_or.toFixed(1)}× more likely to cite flammability than a
-                  store or mixed-channel recall — a multiple that has stayed stable since 2000
+                  store or mixed-channel recall, a multiple that has stayed stable since 2000
                   (Breslow–Day p = ${h.breslow_day_p}). ${fmtPct(h.kitagawa_within_rate_share)} of the
                   flammability rise is within-channel, not channel mix.
                   <a href="#/timeline">Timeline</a></li>

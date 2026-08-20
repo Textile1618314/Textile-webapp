@@ -102,7 +102,7 @@ export function lineChart(container, cfg) {
           return {
             label: s.label,
             color: s.color,
-            value: v ? fmt(v.y) + (v.lo != null ? ` [${fmt(v.lo)}–${fmt(v.hi)}]` : "") : "—",
+            value: v ? fmt(v.y) + (v.lo != null ? ` [${fmt(v.lo)}–${fmt(v.hi)}]` : "") : "-",
           };
         });
         showTooltip(event, tooltipContent(String(year), rows));

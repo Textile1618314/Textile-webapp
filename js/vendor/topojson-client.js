@@ -1,4 +1,4 @@
-/*! topojson-client v3 — vendored subset (feature/mesh decoding).
+/*! topojson-client v3 - vendored subset (feature/mesh decoding).
  *  Copyright 2012-2019 Michael Bostock. ISC License.
  *  https://github.com/topojson/topojson-client
  *  Only the decoding path this application needs is included, so the site

@@ -244,7 +244,7 @@ export default {
         tdHaz.appendChild(chip);
 
         const tdCountry = document.createElement("td");
-        tdCountry.textContent = r.primary_country || "—";
+        tdCountry.textContent = r.primary_country || "-";
 
         const tdChan = document.createElement("td");
         tdChan.textContent = CHANNELS[r.sales_channel] || r.sales_channel;
@@ -295,13 +295,13 @@ export default {
               ${specRow("Date", esc(fmtDate(r.date)))}
               ${specRow("Segment", esc(r.segment === "home_textile" ? "Home textile" : "Apparel"))}
               ${specRow("Archetype", esc(ARCHETYPES[r.archetype] || r.archetype))}
-              ${specRow("Boundary class", esc(r.boundary_class ? (BOUNDARY_CLASSES[r.boundary_class] || r.boundary_class) : "—"))}
+              ${specRow("Boundary class", esc(r.boundary_class ? (BOUNDARY_CLASSES[r.boundary_class] || r.boundary_class) : "-"))}
               ${specRow("Cites sleepwear standard", esc(yesNo(r.sleepwear_standard)))}
               ${specRow("Injuries reported", esc(yesNo(r.injuries_reported)))}
               ${specRow("Units recalled", esc(fmtInt(r.units)))}
               ${specRow("Unit price", esc(fmtUSD(r.price_usd)))}
               ${specRow("Sales channel", esc(CHANNELS[r.sales_channel] || r.sales_channel))}
-              ${specRow("Countries of origin", esc(r.countries.length ? r.countries.join(", ") : "—"))}
+              ${specRow("Countries of origin", esc(r.countries.length ? r.countries.join(", ") : "-"))}
               ${specRow("Remedies offered", esc(r.remedy_options.length ? r.remedy_options.join(", ") : "not stated"))}
             </dl>
             <p style="margin-top:1rem">
